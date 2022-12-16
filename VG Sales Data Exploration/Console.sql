@@ -2,19 +2,24 @@
 
 --Platform with most Games Sold 
 
-select platform.platform as Console, sum(cast(vgsales.global_sales as decimal (16,2))) as 'TotalGamesSold(Per Million)' from PortfolioProject..platform
-join PortfolioProject..vgsales
-on platform.rank = vgsales.rank 
-group by platform.platform 
-order by 2 desc
+SELECT
+  platform.platform AS Console,
+  SUM(CAST(vgsales.global_sales AS decimal(16, 2))) AS 'TotalGamesSold(Per Million)'
+FROM PortfolioProject..platform
+JOIN PortfolioProject..vgsales
+  ON platform.rank = vgsales.rank
+GROUP BY platform.platform
+ORDER BY 2 DESC
 
 --Most Games made for a platform 
 
-select platform.platform as Console, count(vgsales.name) as 'No.OfGames' from PortfolioProject..platform
-join PortfolioProject..vgsales
-on platform.rank = vgsales.rank 
-group by platform.platform 
-order by 2 desc 
-
+SELECT
+  platform.platform AS Console,
+  COUNT(vgsales.name) AS 'No.OfGames'
+FROM PortfolioProject..platform
+JOIN PortfolioProject..vgsales
+  ON platform.rank = vgsales.rank
+GROUP BY platform.platform
+ORDER BY 2 DESC
 
 
