@@ -1,4 +1,4 @@
-#Step 1 
+#Imported data from the necessary files
 
 from hangman_words import word_list
 from hangman_art import stages 
@@ -16,12 +16,13 @@ while len(display)<len(chosen_word):
   display+= '_'
 guessed_letter=[]
 
-#Creating Limited no. of chances for the user and a booleon
+#Creating Limited no. of life for the user and a booleon
 lives = 6
 answer = "".join(display)
 end_game =False
 
-#Create a loop where each correct letter guess replaces the blanks.
+#Created a loop where each correct letter guess replaces the blanks.
+#stages[6] was printed earlier to show the user their current status
 print(stages[6])
 while end_game==False :
   guess=input("\nEnter your guess:- ").lower()
@@ -33,7 +34,7 @@ while end_game==False :
       display[position]= letter
       guessed_letter.append(guess)
   
-#Created a Loop for when an incorrect letter was input. Also ensured that the player does not lose a point if the incorrect letter was input twice  
+#Created a Loop for when an incorrect letter was input. Also ensured that the player does not lose a life if the incorrect letter was input twice  
   if guess not in chosen_word:
     lives-=1
     if guess in guessed_letter:
